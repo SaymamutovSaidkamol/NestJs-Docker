@@ -6,9 +6,15 @@ import { UsersModule } from './users/users.module';
 import { UploadModule } from './upload/upload.module';
 import { CategoryModule } from './category/category.module';
 import { CommentsModule } from './product/product.module';
-
+import { CacheModule } from '@nestjs/cache-manager';
+import * as redisStore from "cache-manager-ioredis"
 @Module({
-  imports: [
+  imports: [ 
+    CacheModule.register({
+      isGlobal: true,
+      ttl: 60*1000,
+      store: redisStore
+    }),
     PrismaModule,
     UsersModule,
     UploadModule,

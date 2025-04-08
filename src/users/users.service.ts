@@ -168,14 +168,7 @@ export class UsersService {
   async GetMe(req: Request) {
     return {
       data: await this.prisma.users.findMany({
-        where: { id: req['user'].id },
-        include: {
-          likes: true,
-          comment: true,
-          order: true,
-          banner: true,
-          view: true,
-        },
+        where: { id: req['user'].id }
       }),
     };
   }
